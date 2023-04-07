@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task 5</title>
+</head>
+
+<body>
+   <a href="../index.html">До задач</a>
+   <p> Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.</p>
+   <script>
+
+      function getRndomNumber(minValue, maxValue) {
+         return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      function game(numberElements = 2, minValue = 1, maxValue = 9, delay = 10000) {
+         setTimeout(() => {
+            const arr = []
+            for (let i = 0; i < numberElements; i++) {
+               arr.push(getRndomNumber(minValue, maxValue))
+            }
+
+            const userAnswer = parseInt(prompt(`Введіть результат виразу ${arr.join('+')}`))
+            const currentAnswer = arr.reduce((summ, element) => summ + element)
+
+            if (userAnswer === currentAnswer) alert('Вірно!')
+            else alert('Ви помилились.')
+            game(numberElements, minValue, maxValue, delay)
+         }, delay)
+      }
+
+      game()
+
+   </script>
+</body>
+
+</html>
